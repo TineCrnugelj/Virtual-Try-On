@@ -1,0 +1,37 @@
+.answerOption {
+    border-radius: 0.5rem;
+    background-color: #4260ff;
+    margin: 0.5rem;
+    border-color: white;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.answerOption:hover {
+    border-radius: 0.5rem;
+    background-color: #1835c2;
+    margin: 0.5rem;
+    border-color: white;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.answerText {
+    color: white;
+    font-size: 30px;
+    margin-left: 1rem;
+    padding: .5rem;
+}
+
+.questionText {
+    margin-left: .5rem;
+    color: white;
+}
+
+.answerTextSelected {
+    color: white;
+    font-size: 30px;
+    margin-left: 1rem;
+    padding: .5rem;
+    color: red;
+}
