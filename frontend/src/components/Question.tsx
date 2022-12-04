@@ -1,9 +1,9 @@
-import React, {Fragment, useMemo} from "react";
+import React, {Fragment} from "react";
 
 import classes from './Question.module.css';
 import AnswerOption from "./AnswerOption";
 
-const Question: React.FC<{question: string, answers: string[], index: number}> = ({question, answers, index}) => {
+const Question: React.FC<{questionText: string, answers: string[], index: number}> = ({questionText, answers, index}) => {
     const selectAnswer = (index: number) => {
         answerElements[index] = <AnswerOption key={index} answerText='blabla' isSelected={true} index={index} selectAnswer={selectAnswer} />
         console.log(answerElements);
@@ -14,7 +14,7 @@ const Question: React.FC<{question: string, answers: string[], index: number}> =
     });
 
     return <Fragment>
-        <h1 className={classes.questionText}>{index + '. ' + question}</h1>
+        <h1 className={classes.questionText}>{index + '. ' + questionText}</h1>
         <ol style={{ listStyleType: "none", padding: 0, margin: 0 }}>
             {answerElements}
         </ol>

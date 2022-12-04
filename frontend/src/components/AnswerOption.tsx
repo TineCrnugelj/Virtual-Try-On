@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import classes from "./Question.module.css";
 
 const AnswerOption: React.FC<{answerText: string, isSelected: boolean, index: number, selectAnswer: (index: number) => void}> = ({answerText, isSelected, index, selectAnswer}) => {

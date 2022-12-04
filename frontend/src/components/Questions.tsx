@@ -1,25 +1,32 @@
-import React from "react";
-import {QuestionIF} from "../classes/QuestionIF";
+import React, {useEffect} from "react";
 import {useMultiStepForm} from "../hooks/useMultiStepForm";
-import Question from '../components/Question';
+import {getQuestions} from "../features/questions/questionSlice";
+import {FaArrowRight} from 'react-icons/fa';
+import Question from './Question';
 
 import classes from './Questions.module.css';
+import {useAppDispatch, useAppSelector} from "../app/hooks";
 
-const Questions: React.FC<{questions: QuestionIF[]}> = ({questions}) => {
+const Questions = () => {
+    const {questions} = useAppSelector(state => state.questions);
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(getQuestions());
+        console.log(questions);
+    }, []);
+
     const questionElements = questions.map((q, i) => {
-       return <Question question={q.question} answers={q.answers} index={i+1} />
+       return <Question questionText={q.questionText} answers={q.answers} index={i+1} />
     });
 
     const {
         steps,
         currentStepIndex,
         currentStep,
-        isFirstStep,
         back,
         next
     } = useMultiStepForm(questionElements);
-
-
 
     return (
         <div className={classes.questionContainer}>
@@ -31,6 +38,7 @@ const Questions: React.FC<{questions: QuestionIF[]}> = ({questions}) => {
                 <div style={{marginTop: '1rem', display: 'flex', gap: '.5rem', justifyContent: 'flex-end'}}>
                     {currentStepIndex !== 0 && <button type='button' onClick={back}>Back</button>}
                     <button type='button' onClick={next}>Next</button>
+                    <FontAwesomeIcon icon={regular('arrow-right')} />
                 </div>
             </form>
         </div>

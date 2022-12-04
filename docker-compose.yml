@@ -1,0 +1,15 @@
+version: "3.5"
+
+services:
+  mongo-db:
+    image: mongo
+    container_name: VirtualTryOn-mongodb
+    ports:
+      - "27017-27019:27017-27019"
+    networks:
+      - VirtualTryOn-network
+
+networks:
+  VirtualTryOn-network:
+    name: VirtualTryOn-network
+    driver: bridge
