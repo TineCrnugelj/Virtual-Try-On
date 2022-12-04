@@ -4,3 +4,21 @@
     width: 700px;
     background-color: #4260ff;
 }
+.arrowBtn {
+    cursor: pointer;
+    color: white;
+}
+
+.arrowBtn:hover {
+    cursor: pointer;
+    background-color: #4260ff;
+    color: #1835c2;
+}
+
+.arrowContainer {
+    margin-top: 1rem;
+    display: flex;
+    gap: .5rem;
+    justify-content: flex-end;
+}
+

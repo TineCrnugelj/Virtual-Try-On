@@ -4,7 +4,7 @@ import Questions from "./components/Questions";
 
 function App() {
   return <Fragment>
-    <h1>Virtual Try-On</h1>
+    <h1 className="mainHeader">Virtual Try-On</h1>
     <div className='content'>
       <Questions />
     </div>
