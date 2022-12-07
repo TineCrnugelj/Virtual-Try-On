@@ -1,6 +1,6 @@
 .answerOption {
     border-radius: 0.5rem;
-    background-color: #4260ff;
+    background-color: #0d6efd;
     margin: 0.5rem;
     border-color: white;
     border-style: solid;
@@ -33,5 +33,5 @@
     font-size: 30px;
     margin-left: 1rem;
     padding: .5rem;
-    color: red;
+    font-weight: bolder;
 }

@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {useMultiStepForm} from "../hooks/useMultiStepForm";
 import {getQuestions} from "../features/questions/questionSlice";
-import Question from './Question';
+import Question from '../components/Question';
 import {FaArrowRight, FaArrowLeft} from "react-icons/fa";
 
 import classes from './Questions.module.css';
@@ -13,7 +13,6 @@ const Questions = () => {
 
     useEffect(() => {
         dispatch(getQuestions());
-        console.log(questions);
     }, []);
 
     const questionElements = questions.map((q, i) => {
@@ -21,7 +20,6 @@ const Questions = () => {
     });
 
     const {
-        steps,
         currentStepIndex,
         currentStep,
         back,
@@ -31,7 +29,6 @@ const Questions = () => {
     return (
         <div className={classes.questionContainer}>
             <form>
-                <div style={{position: 'absolute', top: '.5rem', right: '.5rem'}}>{currentStepIndex + 1} / {steps.length}</div>
                 <div className={classes.question}>
                     {currentStep}
                 </div>

@@ -1,13 +1,22 @@
 import {Fragment} from 'react'
 import './App.css'
-import Questions from "./components/Questions";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Questions from "./pages/Questions";
+import Navbar from './components/NavBar';
+import Login from "./pages/Login";
 
 function App() {
+
   return <Fragment>
-    <h1 className="mainHeader">Virtual Try-On</h1>
-    <div className='content'>
-      <Questions />
-    </div>
+      <Router>
+          <Navbar />
+          <div className='content'>
+              <Routes>
+                  <Route path='/login' element={<Login />} />
+                  <Route path='/' element={<Questions />} />
+              </Routes>
+          </div>
+      </Router>
   </Fragment>
 }
 

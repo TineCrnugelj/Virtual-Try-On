@@ -1,8 +1,11 @@
+require("dotenv").config();
+
 const express = require('express');
 
 const app = express();
 
 const questionsApi = require('./app_api/routes/questions');
+const usersApi = require('./app_api/routes/users');
 const path = require('path');
 
 require('./app_api/models/db');
@@ -20,6 +23,7 @@ app.use("/api", (req, res, next) => {
 });
 
 app.use('/api', questionsApi);
+app.use('/api', usersApi);
 
 app.listen(5000);
 module.exports = {

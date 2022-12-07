@@ -1,0 +1,8 @@
+.active:hover,
+.active:active,
+.active.active {
+    cursor: pointer;
+    color: white;
+    padding-bottom: 0.25rem;
+    text-decoration: none;
+}
