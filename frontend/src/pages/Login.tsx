@@ -42,6 +42,7 @@ const Login = () => {
         const userData = { username, password };
 
         dispatch(login(userData));
+        navigate('/admin');
     }
 
     formIsValid = username !== '' && password !== '';

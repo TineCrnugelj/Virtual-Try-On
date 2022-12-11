@@ -29,14 +29,14 @@ function ColorSchemesExample() {
                     {!user ?
                         <Fragment>
                             <Nav.Link>
-                                <NavLink className={(navData) => navData.isActive ? classes.active : classes.active} to="/login">Login</NavLink>
+                                <NavLink className={(navData) => navData.isActive ? classes.active : classes.active} to="/login">Prijava</NavLink>
                             </Nav.Link>
 
                         </Fragment>
                          :
                         <Fragment>
                             <Nav.Link>
-                                <a className={classes.active} onClick={onLogout}>Logout</a>
+                                <a className={classes.active} onClick={onLogout}>Odjava</a>
                             </Nav.Link>
                             <Nav.Link>
                                 <NavLink className={(navData) => navData.isActive ? classes.active : classes.active} to="/admin">Admin</NavLink>

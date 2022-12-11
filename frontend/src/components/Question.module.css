@@ -7,6 +7,7 @@
     cursor: pointer;
 }
 
+.answerOptionSelected,
 .answerOption:hover {
     border-radius: 0.5rem;
     background-color: #1835c2;
@@ -26,12 +27,4 @@
 .questionText {
     margin-left: .5rem;
     color: white;
-}
-
-.answerTextSelected {
-    color: white;
-    font-size: 30px;
-    margin-left: 1rem;
-    padding: .5rem;
-    font-weight: bolder;
 }

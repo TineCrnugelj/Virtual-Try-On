@@ -7,8 +7,8 @@ const AnswerOption: React.FC<{answerText: string, isSelected: boolean, index: nu
     }
 
     return (
-        <div className={classes.answerOption} onClick={answerClickHandler}>
-            <li className={isSelected ? classes.answerTextSelected : classes.answerText} key={Math.random()}>{answerText}</li>
+        <div className={isSelected ? classes.answerOptionSelected : classes.answerOption} onClick={answerClickHandler}>
+            <li className={classes.answerText} key={Math.random()}>{answerText}</li>
         </div>
     );
 };
