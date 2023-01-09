@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Admin from './pages/Admin';
 import Home from "./pages/Home";
 import TakePhoto from "./pages/TakePhoto";
+import Results from "./pages/Results";
+import { ToastContainer } from 'react-toastify';
 
 function App() {
 
@@ -20,9 +22,11 @@ function App() {
                   <Route path='/admin' element={<Admin />} />
                   <Route path='/' element={<Home />} />
                   <Route path='/take-photo' element={<TakePhoto />} />
+                  <Route path='/results' element={<Results />} />
               </Routes>
           </div>
       </Router>
+      <ToastContainer />
   </Fragment>
 }
 

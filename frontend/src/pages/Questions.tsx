@@ -33,8 +33,8 @@ const Questions = () => {
                     {currentStep}
                 </div>
                 <div style={{marginTop: '1rem', marginBottom: '.5rem', marginRight: '.5rem', display: 'flex', gap: '.5rem', justifyContent: 'flex-end'}}>
-                    {currentStepIndex !== 0 && <FaArrowLeft className={classes.arrowBtn} size={35} onClick={back} />}
-                    <FaArrowRight className={classes.arrowBtn} onClick={next} size={35} />
+                    {currentStepIndex !== 0 && <FaArrowLeft className={classes.arrowBtnLeft} size={35} onClick={back} />}
+                    <FaArrowRight className={classes.arrowBtnRight} onClick={next} size={35} />
                 </div>
             </form>
         </div>

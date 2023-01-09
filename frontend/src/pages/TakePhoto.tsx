@@ -1,8 +1,9 @@
 import {useEffect, useRef, useState} from "react";
+import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
+import {FaCamera} from "react-icons/fa";
 
 import classes from './TakePhoto.module.css';
-import {useNavigate} from "react-router-dom";
 
 const TakePhoto = () => {
     const videoRef = useRef(null);
@@ -67,7 +68,7 @@ const TakePhoto = () => {
             <div className={classes.camera}>
                 <video className={classes.video} ref={videoRef}></video>
             </div>
-            <Button style={{ marginBottom: '0.5rem' }} variant='primary' onClick={takePhoto}>Zajemi</Button>
+            <Button style={{ marginBottom: '0.5rem' }} variant='primary' onClick={takePhoto}><FaCamera size={25} /></Button>
             <div className={classes.result + (hasPhoto ? classes.hasPhoto : '')}>
                 <canvas ref={photoRef}></canvas>
             </div>

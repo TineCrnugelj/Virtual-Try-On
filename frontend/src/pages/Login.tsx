@@ -1,10 +1,11 @@
 import {Fragment, useEffect, useState} from "react";
-
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import classes from './Login.module.css';
 import {FaSignInAlt} from "react-icons/fa";
 import {Button} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "../app/hooks";
-import {login} from "../features/users/userSlice";
+import {login, reset} from "../features/users/userSlice";
 import {useNavigate} from "react-router-dom";
 
 const Login = () => {
@@ -40,9 +41,18 @@ const Login = () => {
         event.preventDefault();
 
         const userData = { username, password };
+        console.log(userData);
 
         dispatch(login(userData));
-        navigate('/admin');
+        if (user !== null) {
+            reset();
+            navigate('/admin');
+            toast.success('Dobrodošli, ' + username, {autoClose: 3000});
+        } else {
+            setUsername('');
+            setPassword('');
+            toast.error('Napačno uporabniško ime ali geslo!', {autoClose: 2000});
+        }
     }
 
     formIsValid = username !== '' && password !== '';
@@ -51,21 +61,21 @@ const Login = () => {
         <section className={classes.container}>
             <div className={classes.head}>
                 <h1>
-                    <FaSignInAlt/> Login
+                    <FaSignInAlt/> Prijava
                 </h1>
-                <p>Please log in</p>
+                <p>Prosimo prijavite se</p>
             </div>
 
             <form onSubmit={onSubmit}>
                 <div>
-                    <label htmlFor="email">Username</label>
-                    <input type="text" name="username" id="username" value={username} placeholder='Enter your email'
+                    <label htmlFor="email">Uporabniško ime</label>
+                    <input type="text" name="username" id="username" value={username} placeholder='Vnesite uporabniško ime'
                            onChange={handleUsernameChange}/>
                 </div>
                 <div>
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Geslo</label>
                     <input type="password" name="password" id="password" value={password}
-                           placeholder='Enter your password' onChange={handlePasswordChange} />
+                           placeholder='Vnesite vaše geslo' onChange={handlePasswordChange} />
                 </div>
                 <div>
                     <Button type="submit" className={classes.btnSubmit} disabled={!formIsValid}>Login</Button>

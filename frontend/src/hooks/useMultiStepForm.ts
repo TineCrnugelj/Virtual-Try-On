@@ -1,11 +1,14 @@
 import {ReactElement, useState} from "react";
+import {useNavigate} from "react-router-dom";
 
 export function useMultiStepForm(steps: ReactElement[]) {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
+    const navigate = useNavigate();
 
     function next() {
         setCurrentStepIndex(i => {
             if (i >= steps.length - 1) {
+                navigate('/results');
                 return i;
             }
             return i + 1;

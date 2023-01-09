@@ -1,5 +1,7 @@
 .heading {
     text-align: center;
+    margin: 1rem 0 2rem 1rem;
+    color: #044599;
 }
 
 .btnSubmit {
