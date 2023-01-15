@@ -26,3 +26,13 @@
     top: 0;
     color: #ce1010;
 }
+
+.pageHeader {
+    display: inline-flex;
+    margin-top: 1rem;
+}
+
+.addBtn {
+    height: 3rem;
+    margin-left: 1rem;
+}

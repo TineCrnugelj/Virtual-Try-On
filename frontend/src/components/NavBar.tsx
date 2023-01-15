@@ -9,7 +9,7 @@ import {logout, reset} from "../features/users/userSlice";
 import {FaPlus, FaPen} from "react-icons/fa";
 import classes from './NavBar.module.css';
 import {Fragment, useState} from "react";
-import {NavDropdown} from "react-bootstrap";
+import {Button, NavDropdown} from "react-bootstrap";
 
 function ColorSchemesExample() {
     const dispatch = useAppDispatch();
@@ -38,19 +38,19 @@ function ColorSchemesExample() {
                     {!user ?
                         <Fragment>
                             <Nav.Link>
-                                <NavLink className={(navData) => navData.isActive ? classes.active : classes.active} to="/login">Prijava</NavLink>
+                                <Button><NavLink className={(navData) => navData.isActive ? classes.active : classes.active} to="/login">Prijava</NavLink></Button>
                             </Nav.Link>
 
                         </Fragment>
                          :
                         <Fragment>
                             <Nav.Link>
-                                <a className={classes.active} onClick={onLogout}>Odjava</a>
+                                <Button><a className={classes.active} onClick={onLogout}>Odjava</a></Button>
                             </Nav.Link>
                             <Nav.Link>
-                            <NavDropdown
-                                title={<span className="text-white">Admin</span>}
-                            >
+                                <NavDropdown
+                                    title={<span className="text-white">Admin</span>}
+                                >
                                     <NavDropdown.Item onClick={handleAdminClick}><FaPlus /> Novo vprašanje</NavDropdown.Item>
                                     <NavDropdown.Item onClick={handleEditClick}><FaPen/> Urejanje vprašanj</NavDropdown.Item>
                                 </NavDropdown>

@@ -13,6 +13,11 @@ const postQuestion = async (questionData: QuestionBody) => {
     return response.data;
 }
 
+const postSaveQuestions = async (questions: {questions: QuestionBody[]}) => {
+    const response = await axios.post(`${API_URL}save`, questions);
+    return response.data;
+}
+
 const deleteQuestion = async (questionId: string) => {
     const response = await axios.delete(API_URL + questionId);
     return response.data;
@@ -22,6 +27,7 @@ const questionService = {
     getQuestions,
     postQuestion,
     deleteQuestion,
+    postSaveQuestions,
 }
 
 export default questionService;

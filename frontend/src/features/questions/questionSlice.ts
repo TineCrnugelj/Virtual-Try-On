@@ -36,6 +36,15 @@ export const createQuestion = createAsyncThunk('questions/createQuestion', async
     }
 });
 
+export const saveQuestions = createAsyncThunk('questions/saveQuestions', async (questions: {questions: QuestionBody[]}, thunkAPI) => {
+    try {
+        return await questionService.postSaveQuestions(questions);
+    } catch (error: any) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+});
+
 export const deleteQuestion = createAsyncThunk('questions/deleteQuestion', async (questionId: string, thunkAPI) => {
     try {
         return await questionService.deleteQuestion(questionId);

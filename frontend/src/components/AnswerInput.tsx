@@ -1,11 +1,12 @@
 import classes from "./AddQuestion.module.css";
 import React, {useState} from "react";
 
-const AnswerInput: React.FC<{index: number, setInput: (index: number) => void}> = ({index, setInput}) => {
+const AnswerInput: React.FC<{index: number, setInput: (index: number, text: string) => void}> = ({index, setInput}) => {
     const [value, setValue] = useState('');
 
     const valueChanged = (e: React.FormEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value);
+        setInput(index, e.currentTarget.value);
     }
 
     return <div className={classes.formControl} key={index}>

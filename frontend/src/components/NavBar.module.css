@@ -6,3 +6,7 @@
     padding-bottom: 0.25rem;
     text-decoration: none;
 }
+
+a.nav-link {
+    padding-top: 1.5rem;
+}

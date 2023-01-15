@@ -1,12 +1,12 @@
 import {Fragment, useEffect, useState} from "react";
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import classes from './Login.module.css';
 import {FaSignInAlt} from "react-icons/fa";
 import {Button} from "react-bootstrap";
 import {useAppDispatch, useAppSelector} from "../app/hooks";
 import {login, reset} from "../features/users/userSlice";
 import {useNavigate} from "react-router-dom";
+
+import classes from './Login.module.css';
 
 const Login = () => {
     const dispatch = useAppDispatch();
@@ -21,7 +21,6 @@ const Login = () => {
 
     useEffect(() => {
         if (isError) {
-            console.log('Error');
             return;
         }
         if (isSuccess || user) {
@@ -41,17 +40,11 @@ const Login = () => {
         event.preventDefault();
 
         const userData = { username, password };
-        console.log(userData);
 
         dispatch(login(userData));
-        if (user !== null) {
-            reset();
+        if (!isError) {
             navigate('/admin');
-            toast.success('Dobrodošli, ' + username, {autoClose: 3000});
-        } else {
-            setUsername('');
-            setPassword('');
-            toast.error('Napačno uporabniško ime ali geslo!', {autoClose: 2000});
+            dispatch(reset());
         }
     }
 
@@ -78,6 +71,7 @@ const Login = () => {
                            placeholder='Vnesite vaše geslo' onChange={handlePasswordChange} />
                 </div>
                 <div>
+                    {isError ? <p className={classes.error}>Napačno uporabniško ime ali geslo</p> : ''}
                     <Button type="submit" className={classes.btnSubmit} disabled={!formIsValid}>Login</Button>
                 </div>
             </form>

@@ -3,35 +3,50 @@ import {Button} from "react-bootstrap";
 import AnswerInput from "./AnswerInput";
 import { toast } from 'react-toastify';
 import classes from './AddQuestion.module.css';
-
-interface StateVariable<T> {
-    value: T;
-    setValue: (cb: (value: T) => T) => void;
-}
+import {useAppDispatch} from "../app/hooks";
+import {createQuestion} from "../features/questions/questionSlice";
 
 const AddQuestion = () => {
+    const dispatch = useAppDispatch();
     const [questionText, setQuestionText]     = useState('');
+    const [answers, setAnswers]               = useState<string[]>([]);
     const [numOfAnswers, setNumOfAnswers]     = useState(2);
     const [answerElements, setAnswerElements] = useState<React.ReactElement[]>([]);
+    const [disabled, setDisabled]             = useState(true);
 
     useEffect(() => {
         setAnswerElements([
             <AnswerInput key={0} index={0} setInput={setInput} />,
             <AnswerInput key={1} index={1} setInput={setInput}/>
         ]);
+        setAnswers(Array(numOfAnswers).fill(''));
     }, []);
 
-    const setInput = (index: number) => {
-        console.log(index);
+    const setInput = (index: number, text: string) => {
+        setAnswers(prevAnswers => {
+            const newAnswers = [...prevAnswers];
+            newAnswers[index] = text;
+
+            return newAnswers;
+        });
     }
 
     const questionTextChanged = (e: React.FormEvent<HTMLInputElement>) => {
         setQuestionText(e.currentTarget.value);
+        if (e.currentTarget.value.trim() === '') {
+            setDisabled(true);
+        } else {
+            setDisabled(false);
+        }
     }
 
     const submitFormHandler = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        const body = {
+            questionText,
+            answers
+        };
+        dispatch(createQuestion(body));
         toast.success('Novo vprašanje uspešno dodano!');
     }
 
@@ -42,6 +57,10 @@ const AddQuestion = () => {
             newAnswerInputs.push(<AnswerInput key={i} index={i} setInput={setInput} />);
         }
         setAnswerElements(newAnswerInputs);
+    }
+
+    const allAnswersNotEmpty = (answers: string[]) => {
+        return answers.some(ans => ans !== '');
     }
 
     return <form onSubmit={submitFormHandler}>
@@ -59,7 +78,7 @@ const AddQuestion = () => {
          <option value="6">6</option>
         </select>
         {answerElements}
-        <Button style={{ margin: '1rem 0 0 2rem'}} type='submit'>Dodaj</Button>
+        <Button disabled={disabled} style={{ margin: '1rem 0 0 2rem'}} type='submit'>Dodaj</Button>
     </form>
 
 }

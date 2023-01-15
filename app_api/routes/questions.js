@@ -7,6 +7,8 @@ router.get('/questions', ctrlQuestions.getAllQuestions);
 
 router.post('/questions', ctrlQuestions.postAddQuestion);
 
+router.post('/questions/save', ctrlQuestions.postSaveQuestions);
+
 router.delete('/questions/:questionId', ctrlQuestions.deleteQuestion);
 
 module.exports = router;
