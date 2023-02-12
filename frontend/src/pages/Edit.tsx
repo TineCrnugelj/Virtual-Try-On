@@ -66,7 +66,7 @@ const Edit = () => {
                         <h2>{q.questionText}</h2>
                         <FaTrash onClick={() => handleDeleteButtonClick(q._id)} className={classes.closeBtn} size={25} />
                     </div>
-                    <ol>
+                    <ol type="A">
                         {q.answers.map((ans, i) => (
                             <li key={i}>{ans}</li>
                         ))}

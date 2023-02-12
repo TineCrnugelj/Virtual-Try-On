@@ -4,6 +4,7 @@ import {Button} from "react-bootstrap";
 import {FaCamera} from "react-icons/fa";
 
 import classes from './TakePhoto.module.css';
+import tine3 from '../images/tine3.jpg';
 
 const TakePhoto = () => {
     const videoRef = useRef(null);
@@ -28,8 +29,8 @@ const TakePhoto = () => {
     }
 
     const takePhoto = () => {
-        const width = 640;
-        const height = width / (16/9);
+        const width = 768; //640;
+        const height = 1024; // width / (16/9);
 
         let video = videoRef.current;
         let photo = photoRef.current;
@@ -65,14 +66,22 @@ const TakePhoto = () => {
     return (
         <div style={{ display: 'block' }}>
             <h1>Zajem slike</h1>
+            <p className="text-info">Prosimo, da se v kader postavite vidni od pasu navzgor</p>
             <div className={classes.camera}>
-                <video className={classes.video} ref={videoRef}></video>
+                <video className={classes.video} ref={videoRef}/>
             </div>
             <Button style={{ marginBottom: '0.5rem' }} variant='primary' onClick={takePhoto}><FaCamera size={25} /></Button>
-            <div className={classes.result + (hasPhoto ? classes.hasPhoto : '')}>
-                <canvas ref={photoRef}></canvas>
+            {/*
+                <div className={classes.result + (hasPhoto ? classes.hasPhoto : '')}>
+                <canvas ref={photoRef}/>
+                <img src={tine3} alt="sample" />
             </div>
-            {hasPhoto && <Button variant='primary' onClick={closePhoto}>Nadaljuj</Button>}
+            */}
+            <div className={classes.result + classes.hasPhoto}>
+                <img src={tine3} alt="sample" />
+            </div>
+
+            <Button variant='primary' onClick={closePhoto}>Nadaljuj</Button>
         </div>
     );
 }

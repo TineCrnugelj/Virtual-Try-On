@@ -3,7 +3,8 @@ import questionService from "./questionService";
 import {QuestionBody} from "../../classes/QuestionIF";
 
 interface QuestionState {
-    questions: {_id: string, questionText: string, answers: string[]}[]
+    questions: {_id: string, questionText: string, answers: string[]}[],
+    score: number[],
     isLoading: boolean
     isSuccess: boolean
     isError: boolean
@@ -12,6 +13,7 @@ interface QuestionState {
 
 const initialState: QuestionState = {
     questions: [],
+    score: [],
     isLoading: false,
     isSuccess: false,
     isError: false,
@@ -58,7 +60,9 @@ export const questionSlice = createSlice({
     name: 'questions',
     initialState,
     reducers: {
-
+        setIndices: (state, action) => {
+            state.score.push(action.payload)
+        }
     },
     extraReducers: (builder => {
         builder
@@ -108,4 +112,5 @@ export const questionSlice = createSlice({
     })
 })
 
+export const {setIndices} = questionSlice.actions
 export default questionSlice.reducer

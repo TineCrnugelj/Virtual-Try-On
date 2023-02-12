@@ -2,10 +2,13 @@ import React, {Fragment, useEffect, useState} from "react";
 
 import classes from './Question.module.css';
 import AnswerOption from "./AnswerOption";
+import {setIndices} from "../features/questions/questionSlice";
+import {useAppDispatch} from "../app/hooks";
 
 const Question: React.FC<{questionText: string, answers: string[], index: number}> = ({questionText, answers, index}) => {
     const [answerEls, setAnswerEls] = useState<React.ReactElement[]>([]);
     const [hasClass, setHasClass]   = useState(true);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         setHasClass(false);
@@ -20,6 +23,7 @@ const Question: React.FC<{questionText: string, answers: string[], index: number
 
     const selectAnswer = (index: number) => {
         const answerElements = [];
+        dispatch(setIndices(index));
         for (let i = 0; i < answers.length; i++) {
             if (i === index) {
                 answerElements.push(<AnswerOption key={i} answerText={answers[i]} isSelected={true} index={i} selectAnswer={selectAnswer} />)
